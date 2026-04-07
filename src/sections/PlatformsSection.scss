@@ -1,0 +1,66 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.platforms-section {
+  @include section;
+  background: $gray-50;
+
+  &__heading {
+    @include heading-lg;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-xl;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.platform-card {
+  @include card;
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    background: $blue-100;
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-md;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $gray-900;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-top: $spacing-sm;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: $spacing-md;
+    color: $blue-600;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+
+  &:hover {
+    .platform-card__link {
+      opacity: 1;
+    }
+  }
+}

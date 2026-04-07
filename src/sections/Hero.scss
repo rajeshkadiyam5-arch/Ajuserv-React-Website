@@ -1,0 +1,272 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  padding: $spacing-lg;
+  padding-top: calc($spacing-lg + 80px);
+  background: $gray-100;
+
+  &__accordion {
+    @include container;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-sm;
+    height: 420px;
+
+    @include lg {
+      gap: $spacing-md;
+      height: 520px;
+    }
+  }
+
+  &__panel {
+    position: relative;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    flex: 0.5;
+    min-width: 70px;
+
+    &:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+      .hero__panel-image {
+        transform: scale(1.05);
+      }
+    }
+
+    &--active {
+      flex: 4;
+      cursor: default;
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  &__panel-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: left center;
+    transition: transform 0.6s ease, background-position 0.5s ease;
+  }
+
+  &__panel--active &__panel-image {
+    background-position: left top;
+  }
+
+  &--align-left &__panel-image {
+    background-position: left center;
+  }
+
+  &--align-left &__panel--active &__panel-image {
+    background-position: top left;
+  }
+
+  &__panel-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-xl;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    color: $white;
+    pointer-events: none;
+
+    @include lg {
+      padding: $spacing-3xl;
+    }
+
+    h1 {
+      font-size: $font-size-xl;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: $spacing-sm;
+
+      @include lg {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-sm;
+      color: rgba($white, 0.9);
+      margin-bottom: 0;
+      max-width: 500px;
+
+      @include lg {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__panel-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+
+    span {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      color: $white;
+      font-size: $font-size-base;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+  }
+}
+
+// Tablet & Mobile responsive - Vertical stacked cards (below 1024px)
+@media (max-width: #{$breakpoint-lg - 1px}) {
+  .hero {
+    padding: $spacing-md;
+    padding-top: calc($spacing-md + 70px);
+
+    &__accordion {
+      flex-direction: column;
+      height: auto;
+      gap: $spacing-sm;
+    }
+
+    &__panel {
+      width: 100%;
+      min-width: 100%;
+      border-radius: $radius-lg;
+      flex: none;
+      height: 60px;
+      transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+
+      &--active {
+        flex: none;
+        height: 280px;
+      }
+    }
+
+    &__panel-image {
+      background-position: top center;
+    }
+
+    &__panel--active &__panel-image {
+      background-position: top center;
+    }
+
+    &__panel-content {
+      padding: $spacing-md $spacing-lg;
+      background: transparent;
+
+      h1 {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-xs;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      }
+
+      p {
+        font-size: $font-size-sm;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    &__panel-label {
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
+      justify-content: flex-start;
+      padding-left: $spacing-xl;
+
+      span {
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        transform: none;
+        font-size: $font-size-base;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+      }
+    }
+  }
+}
+
+// Mobile screens (below 768px)
+@media (max-width: #{$breakpoint-md - 1px}) {
+  .hero {
+    &__panel {
+      height: 50px;
+
+      &--active {
+        height: 220px;
+      }
+    }
+
+    &__panel-content {
+      padding: $spacing-sm $spacing-md;
+
+      h1 {
+        font-size: $font-size-base;
+        margin-bottom: 2px;
+      }
+
+      p {
+        font-size: $font-size-xs;
+      }
+    }
+
+    &__panel-label {
+      padding-left: $spacing-lg;
+
+      span {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// Extra small screens (below 640px)
+@media (max-width: #{$breakpoint-sm - 1px}) {
+  .hero {
+    padding: $spacing-sm;
+    padding-top: calc($spacing-sm + 60px);
+
+    &__accordion {
+      gap: $spacing-xs;
+    }
+
+    &__panel {
+      border-radius: $radius-md;
+      height: 44px;
+
+      &--active {
+        height: 180px;
+      }
+    }
+
+    &__panel-content {
+      padding: $spacing-xs $spacing-sm;
+
+      h1 {
+        font-size: $font-size-sm;
+        margin-bottom: 2px;
+      }
+
+      p {
+        font-size: 11px;
+      }
+    }
+
+    &__panel-label {
+      padding-left: $spacing-md;
+
+      span {
+        font-size: $font-size-xs;
+        letter-spacing: 0.08em;
+      }
+    }
+  }
+}

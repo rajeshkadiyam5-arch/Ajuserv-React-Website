@@ -1,0 +1,31 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.services-section {
+  @include section;
+  background: $white;
+
+  &__heading {
+    @include heading-lg;
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-lg;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.service-card {
+  @include card;
+  font-weight: 500;
+  color: $gray-700;
+  text-align: center;
+}

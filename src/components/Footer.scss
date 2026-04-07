@@ -1,0 +1,158 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ZEBRA: DARK FOOTER (contrasts with content sections)
+.footer {
+  background: linear-gradient(135deg, #1a202c 0%, #0f172a 100%);
+  color: $white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($white, 0.1), transparent);
+  }
+
+  &__container {
+    @include container;
+    padding-top: $spacing-5xl;
+    padding-bottom: $spacing-xl;
+  }
+
+  &__main {
+    display: grid;
+    gap: $spacing-4xl;
+    margin-bottom: $spacing-4xl;
+
+    @include md {
+      grid-template-columns: 1.5fr 2fr;
+    }
+  }
+
+  &__brand {
+    max-width: 320px;
+
+    p {
+      color: rgba($white, 0.7);
+      margin-bottom: $spacing-lg;
+      line-height: $leading-relaxed;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    text-decoration: none;
+  }
+
+  &__logo-img {
+    height: 50px;
+    width: auto;
+
+    @include md {
+      height: 55px;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: $spacing-sm;
+
+    a {
+      width: 40px;
+      height: 40px;
+      background: rgba($white, 0.1);
+      border: 1px solid rgba($white, 0.15);
+      border-radius: $radius-lg;
+      @include flex-center;
+      color: rgba($white, 0.7);
+      transition: all $transition-base;
+
+      &:hover {
+        background: $primary;
+        border-color: $primary;
+        color: $white;
+        transform: translateY(-2px);
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &__links {
+    display: grid;
+    gap: $spacing-xl;
+
+    @include sm {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    h4 {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $white;
+      margin-bottom: $spacing-sm;
+    }
+
+    a, p {
+      color: rgba($white, 0.6);
+      font-size: $font-size-sm;
+      transition: color $transition-fast;
+    }
+
+    a:hover {
+      color: $white;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding-top: $spacing-xl;
+    border-top: 1px solid rgba($white, 0.1);
+
+    @include md {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p {
+      color: rgba($white, 0.5);
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__bottom-links {
+    display: flex;
+    gap: $spacing-lg;
+
+    a {
+      color: rgba($white, 0.5);
+      font-size: $font-size-sm;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

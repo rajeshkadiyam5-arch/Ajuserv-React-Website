@@ -1,0 +1,12 @@
+@use '../styles/variables' as *;
+
+.main-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+    // Removed fixed padding-top since pages with hero sections handle their own padding
+  }
+}

@@ -1,0 +1,582 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.product-page {
+  .badge {
+    @include badge;
+    margin-bottom: $spacing-lg;
+
+    &--light {
+      background: rgba($white, 0.15);
+      color: $white;
+      border: 1px solid rgba($white, 0.25);
+    }
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    background: $white;
+    color: $primary;
+    padding: $spacing-md $spacing-2xl;
+    border-radius: $radius-lg;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all $transition-base;
+    border: none;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform $transition-base;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-md $spacing-2xl;
+    background: transparent;
+    color: $white;
+    border: 2px solid rgba($white, 0.4);
+    border-radius: $radius-lg;
+    font-weight: 600;
+    transition: all $transition-base;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba($white, 0.15);
+      border-color: rgba($white, 0.7);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// ZEBRA: HERO SECTION WITH BACKGROUND IMAGE
+.product-hero {
+  position: relative;
+  padding: $spacing-2xl $spacing-lg;
+  padding-top: calc($spacing-2xl + 80px);
+  padding-bottom: $spacing-3xl;
+  min-height: 400px;
+  background-color: $gray-100;
+  overflow: hidden;
+
+  @include lg {
+    min-height: 480px;
+  }
+
+  // Background image
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+  }
+
+  // Dark overlay for text readability
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 40, 80, 0.85) 0%,
+      rgba(0, 40, 80, 0.7) 40%,
+      rgba(0, 40, 80, 0.4) 70%,
+      rgba(0, 40, 80, 0.2) 100%
+    );
+    z-index: 1;
+  }
+
+  &__content {
+    @include container;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4xl;
+
+    @include lg {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: $spacing-5xl;
+    }
+  }
+
+  &__text {
+    color: $white;
+    flex: 1;
+    max-width: 650px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-xs $spacing-lg;
+    background: rgba($white, 0.15);
+    border: 1px solid rgba($white, 0.25);
+    border-radius: $radius-full;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-bottom: $spacing-xl;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-weight: 800;
+    line-height: $leading-tight;
+    margin-bottom: $spacing-lg;
+    color: $white;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+
+    @include md {
+      font-size: $font-size-4xl;
+    }
+
+    @include lg {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    color: rgba($white, 0.9);
+    line-height: $leading-relaxed;
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__metrics {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 450px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+    align-self: flex-start;
+
+    @include lg {
+      width: auto;
+      min-width: 380px;
+    }
+  }
+}
+
+.metric-card {
+  padding: $spacing-xl;
+  background: rgba($white, 0.95);
+  border: 1px solid $gray-200;
+  border-radius: $radius-xl;
+  text-align: center;
+  transition: all $transition-base;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: $gray-300;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  &__value {
+    display: block;
+    font-size: $font-size-2xl;
+    font-weight: 800;
+    color: $primary;
+    margin-bottom: $spacing-xs;
+
+    @include md {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-base;
+    color: $gray-700;
+    line-height: $leading-relaxed;
+  }
+}
+
+// ZEBRA: WHITE SECTION - Challenges
+.product-section {
+  @include section;
+
+  &--challenges {
+    background: $white;
+  }
+
+  // ZEBRA: GREY SECTION - Features
+  &--features {
+    background: $gray-100;
+  }
+
+  // ZEBRA: DARK SECTION - Impact
+  &--impact {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+
+    .product-section__header h2 {
+      color: $white;
+    }
+
+    .product-section__subtitle {
+      color: rgba($white, 0.8);
+    }
+
+    .badge {
+      background: rgba($white, 0.15);
+      color: $white;
+      border: 1px solid rgba($white, 0.25);
+    }
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-4xl;
+
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+// Challenge Layout
+.challenges-layout {
+  display: grid;
+  gap: $spacing-3xl;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 1fr 1.5fr;
+    gap: $spacing-4xl;
+  }
+
+  &__header {
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-secondary;
+      line-height: $leading-relaxed;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+}
+
+.challenge-item {
+  display: flex;
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  background: $gray-50;
+  border-radius: $radius-xl;
+  border: 1px solid $gray-200;
+  border-left: 4px solid $primary;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all $transition-base;
+
+  &:hover {
+    background: $white;
+    transform: translateX(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  &__number {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $primary;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  p {
+    color: $gray-700;
+    line-height: $leading-relaxed;
+    margin: 0;
+    font-size: $font-size-base;
+  }
+}
+
+// Features Layout
+.features-layout {
+  display: grid;
+  gap: $spacing-3xl;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: 1fr 2fr;
+    gap: $spacing-4xl;
+  }
+
+  &__header {
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: $text-secondary;
+      line-height: $leading-relaxed;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-md;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: $white;
+  border-radius: $radius-lg;
+  border: 1px solid $gray-200;
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-color: $gray-300;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border-radius: $radius-md;
+    @include flex-center;
+    flex-shrink: 0;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $white;
+    }
+  }
+
+  span {
+    font-weight: 500;
+    color: $gray-700;
+    font-size: $font-size-sm;
+  }
+}
+
+// Badge variants
+.badge {
+  &--danger {
+    background: #FEF2F2 !important;
+    color: #EF4444 !important;
+    border: 1px solid #FECACA !important;
+  }
+
+  &--success {
+    background: #ECFDF5 !important;
+    color: #059669 !important;
+    border: 1px solid #A7F3D0 !important;
+  }
+}
+
+// Impact Grid
+.impact-grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.impact-card {
+  background: rgba($white, 0.1);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: $radius-xl;
+  padding: $spacing-2xl;
+  text-align: center;
+  transition: all $transition-base;
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba($white, 0.15);
+    transform: translateY(-4px);
+  }
+
+  &__value {
+    display: block;
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: $spacing-sm;
+
+    @include md {
+      font-size: $font-size-4xl;
+    }
+  }
+
+  &__label {
+    font-size: $font-size-base;
+    color: rgba($white, 0.8);
+  }
+}
+
+// ZEBRA: GREY SECTION - CTA
+.product-cta {
+  @include section;
+  background: $gray-100;
+
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    background: linear-gradient(135deg, $primary 0%, #004080 100%);
+    border-radius: $radius-2xl;
+    padding: $spacing-4xl $spacing-xl;
+    text-align: center;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+
+    @include md {
+      padding: $spacing-5xl $spacing-4xl;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba($white, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    h2 {
+      font-size: $font-size-2xl;
+      font-weight: 700;
+      margin-bottom: $spacing-md;
+      position: relative;
+
+      @include md {
+        font-size: $font-size-3xl;
+      }
+    }
+
+    p {
+      font-size: $font-size-lg;
+      color: rgba($white, 0.9);
+      margin-bottom: $spacing-2xl;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-2xl;
+    border-radius: $radius-lg;
+    font-weight: 600;
+    transition: all $transition-base;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform $transition-base;
+    }
+
+    &--primary {
+      background: $white;
+      color: $primary;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+        svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $white;
+      border: 2px solid rgba($white, 0.4);
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba($white, 0.15);
+        border-color: rgba($white, 0.6);
+      }
+    }
+  }
+}

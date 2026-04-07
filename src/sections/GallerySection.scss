@@ -1,0 +1,171 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ZEBRA: GREY SECTION
+.gallery-section {
+  @include section;
+  background: $gray-100;
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .badge {
+      @include badge;
+      margin-bottom: $spacing-md;
+    }
+
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      @include subheading;
+      margin: 0 auto;
+    }
+  }
+}
+
+.gallery-carousel {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: $radius-xl;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid $gray-200;
+
+  &__track {
+    display: flex;
+    transition: transform 0.5s ease;
+    cursor: grab;
+
+    &.dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+  }
+
+  &__slide {
+    min-width: 100%;
+    height: 350px;
+    position: relative;
+    background: $white;
+
+    @include md {
+      height: 400px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: 50%;
+    cursor: pointer;
+    @include flex-center;
+    transition: all $transition-base;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      color: $gray-700;
+    }
+
+    &:hover {
+      background: $primary;
+      border-color: $primary;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba($primary, 0.3);
+
+      svg {
+        color: $white;
+      }
+    }
+
+    &--prev {
+      left: 16px;
+    }
+
+    &--next {
+      right: 16px;
+    }
+
+    @media (max-width: $breakpoint-md) {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &--prev {
+        left: 10px;
+      }
+
+      &--next {
+        right: 10px;
+      }
+    }
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba($white, 0.6);
+    border: none;
+    cursor: pointer;
+    transition: all $transition-base;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: rgba($white, 0.9);
+    }
+
+    &.active {
+      width: 28px;
+      border-radius: 5px;
+      background: $white;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .gallery-carousel {
+    &__slide {
+      height: 250px;
+    }
+  }
+}

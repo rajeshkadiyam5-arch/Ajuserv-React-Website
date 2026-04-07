@@ -1,0 +1,144 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ZEBRA: WHITE SECTION (with colored inner box)
+.cta {
+  @include section;
+  position: relative;
+  background: $white;
+
+  &__background {
+    position: absolute;
+    inset: $spacing-lg;
+    background: linear-gradient(135deg, $primary 0%, #004080 50%, #002850 100%);
+    border-radius: $radius-2xl;
+    z-index: 0;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba($white, 0.1) 0%, transparent 60%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -50%;
+      left: -30%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba($white, 0.05) 0%, transparent 60%);
+    }
+
+    @include md {
+      inset: $spacing-2xl $spacing-3xl;
+    }
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    text-align: center;
+    padding: $spacing-2xl $spacing-lg;
+    color: $white;
+
+    @include md {
+      padding: $spacing-3xl $spacing-2xl;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-lg;
+    background: rgba($white, 0.15);
+    border: 1px solid rgba($white, 0.25);
+    border-radius: $radius-full;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    margin-bottom: $spacing-xl;
+    backdrop-filter: blur(10px);
+  }
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    line-height: $leading-tight;
+
+    @include md {
+      font-size: $font-size-3xl;
+    }
+
+    @include lg {
+      font-size: $font-size-4xl;
+    }
+  }
+
+  p {
+    font-size: $font-size-lg;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto $spacing-2xl;
+    line-height: $leading-relaxed;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-2xl;
+    border-radius: $radius-lg;
+    font-weight: 600;
+    font-size: $font-size-base;
+    transition: all $transition-base;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform $transition-base;
+    }
+
+    &--primary {
+      background: $white;
+      color: $primary;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+        svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+
+    &--secondary {
+      background: rgba($white, 0.1);
+      color: $white;
+      border: 2px solid rgba($white, 0.3);
+      backdrop-filter: blur(10px);
+
+      &:hover {
+        background: rgba($white, 0.2);
+        border-color: rgba($white, 0.5);
+      }
+    }
+  }
+}

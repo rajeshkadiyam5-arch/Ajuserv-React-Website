@@ -1,0 +1,141 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ZEBRA: GREY SECTION
+.why-section {
+  @include section;
+  background: $gray-100;
+  position: relative;
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .badge {
+      @include badge;
+      margin-bottom: $spacing-md;
+    }
+
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      @include subheading;
+      margin: 0 auto;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-lg;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.why-card {
+  @include card;
+  text-align: center;
+  padding: $spacing-xl $spacing-lg;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: $primary;
+    transform: scaleX(0);
+    transition: transform $transition-base;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto $spacing-lg;
+    border-radius: $radius-xl;
+    @include flex-center;
+    transition: all $transition-base;
+
+    svg {
+      width: 28px;
+      height: 28px;
+      transition: all $transition-base;
+    }
+  }
+
+  // Colorful icon backgrounds
+  &:nth-child(1) .why-card__icon {
+    background: linear-gradient(135deg, rgba($primary, 0.15) 0%, rgba($primary, 0.05) 100%);
+    border: 1px solid rgba($primary, 0.2);
+
+    svg {
+      stroke: $primary;
+    }
+  }
+
+  &:nth-child(2) .why-card__icon {
+    background: linear-gradient(135deg, rgba(#7C3AED, 0.15) 0%, rgba(#7C3AED, 0.05) 100%);
+    border: 1px solid rgba(#7C3AED, 0.2);
+
+    svg {
+      stroke: #7C3AED;
+    }
+  }
+
+  &:nth-child(3) .why-card__icon {
+    background: linear-gradient(135deg, rgba(#059669, 0.15) 0%, rgba(#059669, 0.05) 100%);
+    border: 1px solid rgba(#059669, 0.2);
+
+    svg {
+      stroke: #059669;
+    }
+  }
+
+  &:nth-child(4) .why-card__icon {
+    background: linear-gradient(135deg, rgba(#D97706, 0.15) 0%, rgba(#D97706, 0.05) 100%);
+    border: 1px solid rgba(#D97706, 0.2);
+
+    svg {
+      stroke: #D97706;
+    }
+  }
+
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $gray-900;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $text-secondary;
+    line-height: $leading-relaxed;
+    font-size: $font-size-sm;
+  }
+
+  &:hover {
+    .why-card__icon {
+      transform: scale(1.1);
+    }
+  }
+}

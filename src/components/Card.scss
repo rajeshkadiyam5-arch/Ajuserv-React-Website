@@ -1,0 +1,27 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.card {
+  @include card;
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $gray-900;
+  }
+
+  &__description {
+    color: $text-secondary;
+    margin-top: $spacing-sm;
+  }
+
+  &--icon {
+    .card__icon {
+      width: 48px;
+      height: 48px;
+      background: $blue-100;
+      border-radius: $radius-lg;
+      margin-bottom: $spacing-md;
+    }
+  }
+}

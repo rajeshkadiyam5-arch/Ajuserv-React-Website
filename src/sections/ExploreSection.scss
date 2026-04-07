@@ -1,0 +1,200 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+// ZEBRA: WHITE SECTION (After Hero)
+.explore-section {
+  @include section;
+  background: $white;
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .badge {
+      @include badge;
+      margin-bottom: $spacing-md;
+    }
+
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      @include subheading;
+      margin: 0 auto;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-xl;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-xl;
+  border-radius: $radius-xl;
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  transition: all $transition-base;
+  text-decoration: none;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $white;
+
+  // Gradient overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    transition: all $transition-base;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &--products {
+    &::before {
+      background: linear-gradient(
+        135deg,
+        rgba($primary, 0.3) 0%,
+        rgba(0, 64, 128, 0.2) 100%
+      );
+    }
+
+    .explore-card__icon {
+      background: rgba($white, 0.2);
+      border: 1px solid rgba($white, 0.3);
+    }
+
+    .explore-card__features li {
+      background: rgba($white, 0.15);
+      border: 1px solid rgba($white, 0.2);
+      color: $white;
+    }
+
+    .explore-card__arrow {
+      background: rgba($white, 0.2);
+      border: 1px solid rgba($white, 0.3);
+      color: $white;
+    }
+  }
+
+  &--services {
+    &::before {
+      background: linear-gradient(
+        135deg,
+        rgba(26, 54, 93, 0.3) 0%,
+        rgba(45, 55, 72, 0.2) 100%
+      );
+    }
+
+    .explore-card__icon {
+      background: rgba($white, 0.2);
+      border: 1px solid rgba($white, 0.3);
+    }
+
+    .explore-card__features li {
+      background: rgba($white, 0.15);
+      border: 1px solid rgba($white, 0.2);
+      color: $white;
+    }
+
+    .explore-card__arrow {
+      background: rgba($white, 0.2);
+      border: 1px solid rgba($white, 0.3);
+      color: $white;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    .explore-card__arrow {
+      transform: translateX(4px);
+      background: $white;
+      color: $primary;
+    }
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    background: rgba($white, 0.2);
+    border-radius: $radius-lg;
+    @include flex-center;
+    margin-bottom: $spacing-xl;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+
+    h3 {
+      font-size: $font-size-2xl;
+      font-weight: 700;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      opacity: 0.9;
+      line-height: $leading-relaxed;
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+
+    li {
+      padding: $spacing-xs $spacing-md;
+      background: rgba($white, 0.15);
+      border-radius: $radius-full;
+      font-size: $font-size-sm;
+      font-weight: 500;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    bottom: $spacing-2xl;
+    right: $spacing-2xl;
+    width: 44px;
+    height: 44px;
+    background: rgba($white, 0.2);
+    border-radius: $radius-full;
+    @include flex-center;
+    transition: all $transition-base;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -1,0 +1,232 @@
+@use 'variables' as *;
+
+// Responsive breakpoints
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+// Flex utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Button styles - Minimalist
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  background: $primary;
+  color: $white;
+  padding: $spacing-md $spacing-2xl;
+  border-radius: $radius-lg;
+  font-weight: 600;
+  font-size: $font-size-base;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  box-shadow: 0 2px 8px rgba($primary, 0.2);
+
+  &:hover {
+    background: $primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba($primary, 0.3);
+  }
+}
+
+@mixin btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  background: $white;
+  color: $primary;
+  padding: $spacing-md $spacing-2xl;
+  border-radius: $radius-lg;
+  font-weight: 600;
+  font-size: $font-size-base;
+  border: 2px solid $gray-200;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    background: $gray-50;
+    border-color: $primary;
+  }
+}
+
+@mixin btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  background: transparent;
+  color: $gray-700;
+  padding: $spacing-md $spacing-2xl;
+  border-radius: $radius-lg;
+  font-weight: 600;
+  font-size: $font-size-base;
+  border: 2px solid $gray-200;
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
+// Card styles - Minimalist
+@mixin card {
+  background: $white;
+  border-radius: $radius-xl;
+  padding: $spacing-xl;
+  border: 1px solid $gray-200;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    border-color: $gray-300;
+  }
+}
+
+// Section styles
+@mixin section {
+  padding: $spacing-3xl $spacing-lg;
+
+  @include md {
+    padding: $spacing-3xl $spacing-2xl;
+  }
+}
+
+// Heading styles
+@mixin heading-xl {
+  font-size: $font-size-3xl;
+  font-weight: 700;
+  color: $gray-900;
+  line-height: $leading-tight;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+
+  @include lg {
+    font-size: $font-size-5xl;
+  }
+}
+
+@mixin heading-lg {
+  font-size: $font-size-2xl;
+  font-weight: 700;
+  color: $gray-900;
+  line-height: $leading-tight;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin heading-md {
+  font-size: $font-size-xl;
+  font-weight: 600;
+  color: $gray-900;
+  line-height: $leading-snug;
+}
+
+@mixin subheading {
+  font-size: $font-size-lg;
+  color: $text-secondary;
+  line-height: $leading-relaxed;
+  max-width: 600px;
+}
+
+// Badge styles - Minimalist
+@mixin badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  background: $gray-100;
+  color: $primary;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  border-radius: $radius-full;
+  border: 1px solid $gray-200;
+}
+
+@mixin badge-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  background: $gray-100;
+  color: $gray-700;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  border-radius: $radius-full;
+  border: 1px solid $gray-200;
+}
+
+// Icon container - Minimalist
+@mixin icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-lg;
+  @include flex-center;
+  background: $primary;
+  color: $white;
+  font-size: $font-size-xl;
+}
+
+@mixin icon-box-light {
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-lg;
+  @include flex-center;
+  background: $gray-100;
+  color: $primary;
+  font-size: $font-size-xl;
+  border: 1px solid $gray-200;
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include md {
+    padding: 0 $spacing-xl;
+  }
+}

@@ -1,0 +1,192 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.solutions-page {
+  // ZEBRA: WHITE SECTION
+  &__content {
+    padding: $spacing-4xl 0;
+    background: $white;
+  }
+
+  &__grid {
+    @include container;
+    display: grid;
+    gap: $spacing-xl;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  // ZEBRA: GREY SECTION (CTA wrapper)
+  &__cta {
+    @include container;
+    text-align: center;
+    padding: $spacing-4xl $spacing-xl;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+    border-radius: $radius-xl;
+    margin-top: $spacing-4xl;
+    margin-bottom: $spacing-4xl;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(#F59E0B, 0.1) 0%, transparent 60%);
+    }
+
+    h2 {
+      @include heading-lg;
+      color: $white;
+      margin-bottom: $spacing-sm;
+      position: relative;
+    }
+
+    p {
+      color: rgba($white, 0.9);
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-xl;
+      position: relative;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-sm;
+      background: $white;
+      color: #1e3a5f;
+      padding: $spacing-md $spacing-2xl;
+      border-radius: $radius-lg;
+      font-weight: 600;
+      transition: all $transition-base;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform $transition-base;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+
+        svg {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+}
+
+.solution-card {
+  background: $gray-50;
+  border-radius: $radius-xl;
+  padding: $spacing-xl;
+  border: 1px solid $gray-200;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: scaleX(0);
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    background: $white;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    border-color: $gray-300;
+    transform: translateY(-4px);
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
+  &__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-lg;
+    @include flex-center;
+    margin-bottom: $spacing-lg;
+    background: $primary;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: $white;
+    }
+  }
+
+  &:nth-child(1) {
+    .solution-card__icon { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+    &::before { background: #059669; }
+  }
+
+  &:nth-child(2) {
+    .solution-card__icon { background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%); }
+    &::before { background: #7C3AED; }
+  }
+
+  &:nth-child(3) {
+    .solution-card__icon { background: linear-gradient(135deg, #D97706 0%, #B45309 100%); }
+    &::before { background: #D97706; }
+  }
+
+  &:nth-child(4) {
+    .solution-card__icon { background: linear-gradient(135deg, $primary 0%, #004080 100%); }
+    &::before { background: $primary; }
+  }
+
+  h2 {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $gray-900;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    color: $text-secondary;
+    line-height: $leading-relaxed;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-sm;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-sm;
+    color: $primary;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    transition: all $transition-base;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform $transition-base;
+    }
+
+    &:hover {
+      gap: $spacing-md;
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+}

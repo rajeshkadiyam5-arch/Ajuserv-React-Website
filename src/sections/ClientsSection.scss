@@ -1,0 +1,160 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// ZEBRA: WHITE SECTION
+.clients-section {
+  @include section;
+  background: $white;
+  position: relative;
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .badge {
+      @include badge;
+      margin-bottom: $spacing-md;
+    }
+
+    h2 {
+      @include heading-lg;
+      margin-bottom: $spacing-sm;
+    }
+
+    p {
+      @include subheading;
+      margin: 0 auto;
+    }
+  }
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-xl;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+  }
+}
+
+.client-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: float 6s ease-in-out infinite;
+
+  &:nth-child(2) { animation-delay: 0.5s; }
+  &:nth-child(3) { animation-delay: 1s; }
+  &:nth-child(4) { animation-delay: 1.5s; }
+  &:nth-child(5) { animation-delay: 2s; }
+  &:nth-child(6) { animation-delay: 2.5s; }
+  &:nth-child(7) { animation-delay: 3s; }
+  &:nth-child(8) { animation-delay: 3.5s; }
+}
+
+.client-card {
+  background: $gray-50;
+  border-radius: $radius-xl;
+  padding: $spacing-lg;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid $gray-200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 200px;
+  height: 100px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  @media (max-width: $breakpoint-md) {
+    max-width: 160px;
+    height: 80px;
+    padding: $spacing-md;
+  }
+
+  img {
+    max-height: 60px;
+    max-width: 100%;
+    object-fit: contain;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+
+    @media (max-width: $breakpoint-md) {
+      max-height: 50px;
+    }
+  }
+
+  &:hover {
+    background: $white;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba($primary, 0.15);
+    border-color: rgba($primary, 0.3);
+
+    img {
+      transform: scale(1.05);
+    }
+
+    .card-shine {
+      transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+  }
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform 0.6s;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+}

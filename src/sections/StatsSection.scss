@@ -1,0 +1,85 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.stats-section {
+  @include section;
+  @include section-dark;
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    display: grid;
+    gap: $spacing-4xl;
+    align-items: center;
+
+    @include lg {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__text {
+    .badge-dark {
+      @include badge-dark;
+      margin-bottom: $spacing-lg;
+    }
+
+    h2 {
+      font-size: $font-size-3xl;
+      font-weight: 800;
+      color: $white;
+      line-height: $leading-tight;
+      margin-bottom: $spacing-lg;
+
+      @include md {
+        font-size: $font-size-4xl;
+      }
+    }
+
+    p {
+      color: rgba($white, 0.7);
+      font-size: $font-size-lg;
+      line-height: $leading-relaxed;
+      max-width: 500px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+  }
+}
+
+.stat-item {
+  @include card-dark;
+  text-align: center;
+  padding: $spacing-xl;
+
+  &__value {
+    display: block;
+    font-size: $font-size-4xl;
+    font-weight: 800;
+    @include gradient-text;
+    background: linear-gradient(135deg, $blue-400 0%, $white 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: $spacing-xs;
+
+    @include md {
+      font-size: $font-size-5xl;
+    }
+  }
+
+  &__label {
+    display: block;
+    color: rgba($white, 0.6);
+    font-size: $font-size-sm;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}

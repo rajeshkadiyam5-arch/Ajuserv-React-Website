@@ -1,0 +1,244 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// Shimmer animation
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Base skeleton styles
+.skeleton {
+  --skeleton-base: #{$gray-200};
+  --skeleton-shine: #{$gray-100};
+
+  &--page {
+    min-height: 100vh;
+    background: $white;
+  }
+
+  // Shimmer effect mixin
+  %shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--skeleton-base) 0%,
+      var(--skeleton-shine) 50%,
+      var(--skeleton-base) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite ease-in-out;
+    border-radius: $radius-md;
+  }
+
+  // Hero Section
+  &__hero {
+    padding: $spacing-5xl $spacing-lg;
+    padding-top: calc($spacing-5xl + 80px);
+    background: linear-gradient(135deg, $gray-200 0%, $gray-100 100%);
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3xl;
+
+    @include lg {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  &__hero-content {
+    flex: 1;
+    max-width: 600px;
+  }
+
+  &__badge {
+    @extend %shimmer;
+    width: 120px;
+    height: 32px;
+    border-radius: $radius-full;
+    margin-bottom: $spacing-xl;
+
+    &--small {
+      width: 100px;
+      height: 28px;
+    }
+  }
+
+  &__title {
+    @extend %shimmer;
+    width: 80%;
+    height: 48px;
+    margin-bottom: $spacing-md;
+
+    @include md {
+      height: 56px;
+    }
+  }
+
+  &__text {
+    @extend %shimmer;
+    width: 100%;
+    height: 20px;
+    margin-bottom: $spacing-sm;
+
+    &--short {
+      width: 60%;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-xl;
+  }
+
+  &__button {
+    @extend %shimmer;
+    width: 150px;
+    height: 48px;
+    border-radius: $radius-lg;
+
+    &--outline {
+      width: 130px;
+    }
+  }
+
+  &__hero-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    width: 100%;
+    max-width: 400px;
+
+    @include lg {
+      width: 380px;
+    }
+  }
+
+  &__metric {
+    @extend %shimmer;
+    height: 100px;
+    border-radius: $radius-xl;
+    background: linear-gradient(
+      90deg,
+      rgba($white, 0.3) 0%,
+      rgba($white, 0.5) 50%,
+      rgba($white, 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite ease-in-out;
+  }
+
+  // Content Section
+  &__content {
+    @include section;
+    @include container;
+  }
+
+  &__section-header {
+    text-align: center;
+    margin-bottom: $spacing-4xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__heading {
+    @extend %shimmer;
+    width: 300px;
+    height: 40px;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__subheading {
+    @extend %shimmer;
+    width: 400px;
+    max-width: 100%;
+    height: 20px;
+  }
+
+  &__grid {
+    display: grid;
+    gap: $spacing-lg;
+
+    @include md {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+  }
+
+  &__card-icon {
+    @extend %shimmer;
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__card-title {
+    @extend %shimmer;
+    width: 70%;
+    height: 24px;
+    margin-bottom: $spacing-md;
+  }
+
+  &__card-text {
+    @extend %shimmer;
+    width: 100%;
+    height: 16px;
+    margin-bottom: $spacing-sm;
+
+    &--short {
+      width: 80%;
+    }
+  }
+
+  // Text variant
+  &--text {
+    padding: $spacing-lg;
+  }
+
+  &__line {
+    @extend %shimmer;
+    width: 100%;
+    height: 16px;
+    margin-bottom: $spacing-sm;
+
+    &--medium {
+      width: 85%;
+    }
+
+    &--short {
+      width: 60%;
+    }
+  }
+
+  // Card variant (standalone)
+  &--card {
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: $radius-xl;
+    padding: $spacing-xl;
+  }
+
+  // Hero variant (standalone)
+  &--hero {
+    padding: $spacing-5xl $spacing-lg;
+    padding-top: calc($spacing-5xl + 80px);
+    background: linear-gradient(135deg, $gray-200 0%, $gray-100 100%);
+  }
+}
